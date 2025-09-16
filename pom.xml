@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>pt.com.javadevweek</groupId>
 	<artifactId>smartdelivery</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0.0</version>
 	<name>smartdelivery</name>
 	<description>Gestao de Entrega</description>
 	<url/>
