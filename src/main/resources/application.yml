@@ -1,3 +1,6 @@
 spring:
-  application:
-    name: smartdelivery
+  datasource:
+    url: jdbc:postgresql://localhost:5433/smartdelivery
+    username: admin
+    password: admin
+    driver-class-name: org.postgresql.Driver
