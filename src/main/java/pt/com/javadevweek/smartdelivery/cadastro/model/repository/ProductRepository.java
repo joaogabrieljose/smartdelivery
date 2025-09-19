@@ -11,6 +11,6 @@ import pt.com.javadevweek.smartdelivery.cadastro.model.entityProduct.Products;
 
 @Repository
 public interface ProductRepository extends JpaRepository<Products, UUID>{
-    Optional<Products>findByDescription(String descriptioString);
+    Optional<Products>findByCode(String code);
     
 }
