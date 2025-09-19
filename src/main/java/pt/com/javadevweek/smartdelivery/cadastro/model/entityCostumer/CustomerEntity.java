@@ -1,4 +1,4 @@
-package pt.com.javadevweek.smartdelivery.cadastro.model.entity;
+package pt.com.javadevweek.smartdelivery.cadastro.model.entityCostumer;
 
 import java.util.UUID;
 

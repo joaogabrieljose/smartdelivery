@@ -18,14 +18,6 @@ public class ProductDTO {
     private String description;
     private double price;
 
-     public ProductDTO(Products entity) {
-        BeanUtils.copyProperties(entity, this);
-    }
-
-    public Products toEntity(){
-        Products entity = new Products();
-        BeanUtils.copyProperties(this, entity);
-        return entity;
-    }
+    
 
 }

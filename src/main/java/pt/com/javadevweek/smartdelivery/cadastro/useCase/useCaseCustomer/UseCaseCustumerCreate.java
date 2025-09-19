@@ -1,4 +1,4 @@
-package pt.com.javadevweek.smartdelivery.cadastro.useCase;
+package pt.com.javadevweek.smartdelivery.cadastro.useCase.useCaseCustomer;
 
 import java.util.Optional;
 import org.springframework.stereotype.Service;
