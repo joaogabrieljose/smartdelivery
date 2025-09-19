@@ -4,8 +4,8 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
 import jakarta.transaction.Transactional;
-import pt.com.javadevweek.smartdelivery.cadastro.model.dto.ProductDTO;
-import pt.com.javadevweek.smartdelivery.cadastro.model.dto.ProductResponse;
+import pt.com.javadevweek.smartdelivery.cadastro.model.dto.productDto.ProductDTO;
+import pt.com.javadevweek.smartdelivery.cadastro.model.dto.productDto.ProductResponse;
 import pt.com.javadevweek.smartdelivery.cadastro.model.entityProduct.Products;
 import pt.com.javadevweek.smartdelivery.cadastro.model.repository.ProductRepository;
 

@@ -4,8 +4,8 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import pt.com.javadevweek.smartdelivery.cadastro.model.dto.ListProductResponse;
-import pt.com.javadevweek.smartdelivery.cadastro.model.dto.ProductMapper;
+import pt.com.javadevweek.smartdelivery.cadastro.model.dto.productDto.ListProductResponse;
+import pt.com.javadevweek.smartdelivery.cadastro.model.dto.productDto.ProductMapper;
 import pt.com.javadevweek.smartdelivery.cadastro.model.repository.ProductRepository;
 
 @Service

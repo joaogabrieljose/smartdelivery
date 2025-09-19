@@ -28,6 +28,7 @@ public class OrdersEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
+    private StatusOrders status = StatusOrders.CRIADO;
     
 
     @Column(name = "customer_id")
@@ -46,6 +47,6 @@ public class OrdersEntity {
     )
     private List<Products> producto;
 
-    private StatusOrders status;
+    
     
 }
