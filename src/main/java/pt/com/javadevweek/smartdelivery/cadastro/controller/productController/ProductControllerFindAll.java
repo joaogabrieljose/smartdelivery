@@ -20,7 +20,8 @@ public class ProductControllerFindAll {
 
     @GetMapping("/")
     public ResponseEntity<?> findAllProduct(){
-        return (ResponseEntity<?>) this.useCaseProductFindAll.findAll();
+        var produ = this.useCaseProductFindAll.findAll();
+        return ResponseEntity.ok().body(produ);
     }
     
 }
