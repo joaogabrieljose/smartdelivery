@@ -1,4 +1,4 @@
-package pt.com.javadevweek.smartdelivery.cadastro.model.dto;
+package pt.com.javadevweek.smartdelivery.cadastro.integrations;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

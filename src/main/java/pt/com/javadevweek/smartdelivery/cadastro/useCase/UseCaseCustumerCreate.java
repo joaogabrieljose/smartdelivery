@@ -1,11 +1,12 @@
 package pt.com.javadevweek.smartdelivery.cadastro.useCase;
 
+import java.util.Optional;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import jakarta.transaction.Transactional;
-import pt.com.javadevweek.smartdelivery.cadastro.model.dto.ViaCepDTO;
-import pt.com.javadevweek.smartdelivery.cadastro.model.entity.CustomerEntity;
+import pt.com.javadevweek.smartdelivery.cadastro.integrations.ViaCepDTO;
+import pt.com.javadevweek.smartdelivery.cadastro.model.entityCostumer.CustomerEntity;
 import pt.com.javadevweek.smartdelivery.cadastro.model.repository.CustomerRepository;
 
 @Service
@@ -30,7 +31,10 @@ public class UseCaseCustumerCreate {
         } catch (Exception e) {
             throw new IllegalArgumentException("erro ao consulta CEP "+ entity.getZipCode());
         }
-
+       this.customerRepository.findByEmail(entity.getEmail()).ifPresent(item -> {
+                throw new IllegalArgumentException("Email já existe");
+       });  
+       
         this.customerRepository.save(entity);
     }
 
