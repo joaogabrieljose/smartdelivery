@@ -1,5 +1,8 @@
 package pt.com.javadevweek.smartdelivery.cadastro.model.entity;
 
+import java.util.UUID;
+
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -16,8 +19,11 @@ import lombok.NoArgsConstructor;
 public class CustomerEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
+    private UUID id;
     private String name;
     private String phone;
+    
+    @Column(unique = true)
     private String email;
     private String address;
     private String password;
