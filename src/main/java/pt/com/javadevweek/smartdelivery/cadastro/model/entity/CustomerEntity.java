@@ -22,10 +22,11 @@ public class CustomerEntity {
     private UUID id;
     private String name;
     private String phone;
-    
+
     @Column(unique = true)
     private String email;
     private String address;
+    private String zipCode;
     private String password;
     
 }
