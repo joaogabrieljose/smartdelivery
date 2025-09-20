@@ -21,17 +21,15 @@ public class UserCaseEntity {
         this.encoder = encoder;
     }
 
-     public UserEntity execute(String username, String password, Roles role){
+     public UserEntity execute(String username,String password,  Roles role){
 
         this.userRepository.findByUsername(username).ifPresent(item -> {
             throw new IllegalArgumentException("username já cadastrado");
         });
-        
-        String passwordEncoder = this.encoder.encode(password);
 
         UserEntity entity = new UserEntity(
             username,
-            passwordEncoder, 
+            encoder.encode(password),
             role
         );
         

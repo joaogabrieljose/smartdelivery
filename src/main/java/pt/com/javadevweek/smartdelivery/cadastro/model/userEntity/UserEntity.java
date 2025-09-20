@@ -4,6 +4,8 @@ import java.util.UUID;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -29,12 +31,13 @@ public class UserEntity {
     @Column(nullable = false )
     private String password;
 
+    @Enumerated(EnumType.STRING)
     private Roles role;
 
     public UserEntity(String username, String password, Roles role){
         this.username = username;
-        this.password = password;
         this.role = role;
+        this.password = password;
     }
 
 

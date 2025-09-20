@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import pt.com.javadevweek.smartdelivery.cadastro.model.entityCostumer.CustomerEntity;
+import pt.com.javadevweek.smartdelivery.cadastro.model.dto.customerDTO.CustomerRequest;
 import pt.com.javadevweek.smartdelivery.cadastro.useCase.useCaseCustomer.UseCaseCustumerCreate;
 
 @RestController
@@ -21,7 +21,7 @@ public class CustomeController {
    }
 
     @PostMapping("/")
-    public ResponseEntity<?> create(@RequestBody CustomerEntity entity){
+    public ResponseEntity<?> create(@RequestBody CustomerRequest entity){
         this.useCaseCustumerCreate.execute(entity);
         return ResponseEntity.ok().build();
     }

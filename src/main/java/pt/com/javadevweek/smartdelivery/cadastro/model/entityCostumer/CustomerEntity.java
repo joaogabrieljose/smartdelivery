@@ -32,14 +32,13 @@ public class CustomerEntity {
     private String email;
     private String address;
     private String zipCode;
-    private String password;
 
-    @Column(name = "user_id")
+    @Column(name = "user_id", insertable = false, updatable = false)
     private UUID userId;
 
     @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinColumn(name = "user_id", insertable = false, nullable = false)
+    @JoinColumn(name = "user_id", nullable = false, insertable = false)
     private UserEntity user;
 
-    
+
 }
