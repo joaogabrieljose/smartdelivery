@@ -2,6 +2,7 @@ package pt.com.javadevweek.smartdelivery.cadastro.useCase.useCaseUser;
 
 
 
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import pt.com.javadevweek.smartdelivery.cadastro.model.repository.UserRepository;
@@ -13,8 +14,11 @@ public class UserCaseEntity {
 
     private UserRepository userRepository;
 
-    public UserCaseEntity(UserRepository userRepository){
+    private final PasswordEncoder encoder;
+
+    public UserCaseEntity(UserRepository userRepository, PasswordEncoder encoder){
         this.userRepository = userRepository;
+        this.encoder = encoder;
     }
 
      public UserEntity execute(String username, String password, Roles role){
@@ -22,10 +26,12 @@ public class UserCaseEntity {
         this.userRepository.findByUsername(username).ifPresent(item -> {
             throw new IllegalArgumentException("username já cadastrado");
         });
+        
+        String passwordEncoder = this.encoder.encode(password);
 
         UserEntity entity = new UserEntity(
             username,
-            password, 
+            passwordEncoder, 
             role
         );
         
