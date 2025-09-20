@@ -21,9 +21,9 @@ public class OrdersController {
 
 
     @PostMapping("/")
-    public String created(@RequestBody OrdersDTO ordersDTO){
-        this.useCaseOrdersCreate.execute(ordersDTO);
-        return "salvo";
+    public ResponseEntity<?> created(@RequestBody OrdersDTO ordersDTO){
+       var order = this.useCaseOrdersCreate.execute(ordersDTO);
+       return ResponseEntity.ok().body(order);
     }
     
 }
