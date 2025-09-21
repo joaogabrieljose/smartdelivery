@@ -7,3 +7,8 @@ spring:
   jpa:
     hibernate: 
       ddl-auto: update
+  rabbitmq: 
+      addresses: amqps://ogihosqy:TZCmSUmRwKYU160HDHeJvL-_xSmzaqsI@cougar.rmq.cloudamqp.com/ogihosqy
+      username: ogihosqy
+      password: TZCmSUmRwKYU160HDHeJvL-_xSmzaqsI
+      virtual-host: ogihosqy
