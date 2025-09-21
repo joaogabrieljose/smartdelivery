@@ -1,5 +1,7 @@
 package pt.com.javadevweek.smartdelivery.cadastro.useCase.useCaseDelivery;
 
+import java.util.UUID;
+
 import org.springframework.stereotype.Service;
 
 import pt.com.javadevweek.smartdelivery.cadastro.model.deliveryman.DeliverManRepository;
@@ -16,7 +18,7 @@ public class UseCaseDeliveryMan {
     }
 
 
-    public void execute(CreateDeliveryManRequest deliveryManRequest){
+    public UUID execute(CreateDeliveryManRequest deliveryManRequest){
 
         this.deliverManRepository.findByDocument(deliveryManRequest.document()).ifPresent(use -> {
             throw new IllegalArgumentException("entregador já cadastrado...");
@@ -28,6 +30,8 @@ public class UseCaseDeliveryMan {
             .phone(deliveryManRequest.phone())
             .build();
             this.deliverManRepository.save(entity);
+            
+            return entity.getId();
     }
 
     
