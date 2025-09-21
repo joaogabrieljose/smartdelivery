@@ -2,10 +2,13 @@ package pt.com.javadevweek.smartdelivery.cadastro.useCase.useCaseOrders;
 
 import java.util.UUID;
 
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
+import pt.com.javadevweek.smartdelivery.cadastro.infra.security.RabbitMQConfig;
 import pt.com.javadevweek.smartdelivery.cadastro.model.dto.dtoOrders.CreateOrdersResponse;
+import pt.com.javadevweek.smartdelivery.cadastro.model.dto.dtoOrders.OrderEvent;
 import pt.com.javadevweek.smartdelivery.cadastro.model.dto.dtoOrders.OrdersDTO;
 import pt.com.javadevweek.smartdelivery.cadastro.model.dto.dtoOrders.OrdersMapper;
 import pt.com.javadevweek.smartdelivery.cadastro.model.entityCostumer.CustomerEntity;
@@ -24,11 +27,15 @@ public class UseCaseOrdersCreate {
 
     private CustomerRepository customerRepository;
 
+    private RabbitTemplate rabbitTemplate;
 
-    public UseCaseOrdersCreate(OrdersRepository ordersRepository, UserRepository  userRepository, CustomerRepository customerRepository){
+
+    public UseCaseOrdersCreate(OrdersRepository ordersRepository, UserRepository  userRepository, CustomerRepository customerRepository, 
+    RabbitTemplate rabbitTemplate ){
         this.ordersRepository = ordersRepository;
         this.userRepository = userRepository;
         this.customerRepository = customerRepository;
+        this.rabbitTemplate = rabbitTemplate;
     }
 
     public CreateOrdersResponse execute(OrdersDTO ordersDTO){
@@ -42,6 +49,8 @@ public class UseCaseOrdersCreate {
 
         OrdersEntity entity = OrdersMapper.tOrdersEntity(ordersDTO, customerEntity.getId());
         this.ordersRepository.save(entity);
+
+        rabbitTemplate.convertAndSend(RabbitMQConfig.QUEUE_ORDER_CREATED, new OrderEvent(entity.getId().toString()));
         return new CreateOrdersResponse(entity.getId(), entity.getStatus().toString());
     }
     
