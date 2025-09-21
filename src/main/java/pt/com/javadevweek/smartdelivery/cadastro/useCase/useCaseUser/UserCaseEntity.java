@@ -32,6 +32,7 @@ public class UserCaseEntity {
             encoder.encode(password),
             role
         );
+        System.out.println(">>> Entity ID: " + entity.getId());
         
         return this.userRepository.save(entity);
     }

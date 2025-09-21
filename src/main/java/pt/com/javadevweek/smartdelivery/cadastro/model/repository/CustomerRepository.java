@@ -11,4 +11,6 @@ import pt.com.javadevweek.smartdelivery.cadastro.model.entityCostumer.CustomerEn
 @Repository
 public interface CustomerRepository extends JpaRepository<CustomerEntity, UUID>{
     Optional<CustomerEntity> findByEmail(String email);
+
+    Optional<CustomerEntity> findByUserId(UUID userId);
 }

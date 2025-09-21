@@ -12,6 +12,7 @@ import pt.com.javadevweek.smartdelivery.cadastro.model.dto.customerDTO.CustomerR
 import pt.com.javadevweek.smartdelivery.cadastro.model.entityCostumer.CustomerEntity;
 import pt.com.javadevweek.smartdelivery.cadastro.model.repository.CustomerRepository;
 import pt.com.javadevweek.smartdelivery.cadastro.model.userEntity.Roles;
+import pt.com.javadevweek.smartdelivery.cadastro.model.userEntity.UserEntity;
 import pt.com.javadevweek.smartdelivery.cadastro.useCase.useCaseUser.UserCaseEntity;
 
 @Service
@@ -41,12 +42,13 @@ public class UseCaseCustumerCreate {
             throw new IllegalArgumentException("erro ao consulta CEP "+ customerRequest.getZipCode());
         }
 
-        this.userCaseEntity.execute(customerRequest.getEmail(),customerRequest.getPassword(), Roles.CUSTOMER);
+        UserEntity userEntity = this.userCaseEntity.execute(customerRequest.getEmail(),customerRequest.getPassword(), Roles.CUSTOMER);
 
         entity.setName(customerRequest.getName());
         entity.setPhone(customerRequest.getPhone());
         entity.setZipCode(customerRequest.getZipCode());
         entity.setEmail(customerRequest.getEmail());
+        entity.setUserId(userEntity.getId());
         
 
        this.customerRepository.findByEmail(customerRequest.getEmail()).ifPresent(item -> {

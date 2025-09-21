@@ -1,6 +1,7 @@
 package pt.com.javadevweek.smartdelivery.cadastro.model.dto.dtoOrders;
 
 import java.util.List;
+import java.util.UUID;
 
 import org.springframework.beans.BeanUtils;
 
@@ -9,10 +10,10 @@ import pt.com.javadevweek.smartdelivery.cadastro.model.orders.OrdersEntity;
 
 public class OrdersMapper {
 
-    public static OrdersEntity tOrdersEntity(OrdersDTO ordersDTO){
+    public static OrdersEntity tOrdersEntity(OrdersDTO ordersDTO, UUID customerId){
 
         OrdersEntity entity = new OrdersEntity();
-        entity.setCustomerId(ordersDTO.customerId());
+        entity.setCustomerId(customerId);
         
        List<Products> products = ordersDTO.producto().stream()
                 .map(id -> {
