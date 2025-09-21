@@ -2,6 +2,7 @@ package pt.com.javadevweek.smartdelivery.cadastro.useCase.useCaseDelivery;
 
 import org.springframework.stereotype.Service;
 
+import pt.com.javadevweek.smartdelivery.cadastro.model.deliveryman.DeliverManRepository;
 import pt.com.javadevweek.smartdelivery.cadastro.model.deliveryman.dto.CreateDeliveryManRequest;
 
 @Service
