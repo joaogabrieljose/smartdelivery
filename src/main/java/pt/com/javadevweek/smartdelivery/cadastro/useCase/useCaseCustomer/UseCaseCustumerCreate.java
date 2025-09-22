@@ -8,6 +8,7 @@ import org.springframework.web.client.RestTemplate;
 
 import jakarta.transaction.Transactional;
 import pt.com.javadevweek.smartdelivery.cadastro.integrations.ViaCepDTO;
+import pt.com.javadevweek.smartdelivery.cadastro.integrations.zipCode.ViaCepClient;
 import pt.com.javadevweek.smartdelivery.cadastro.model.dto.customerDTO.CustomerRequest;
 import pt.com.javadevweek.smartdelivery.cadastro.model.entityCostumer.CustomerEntity;
 import pt.com.javadevweek.smartdelivery.cadastro.model.repository.CustomerRepository;
@@ -22,21 +23,23 @@ public class UseCaseCustumerCreate {
 
     private CustomerRepository customerRepository;
     private UserCaseEntity userCaseEntity;
+    private ViaCepClient viaCepClient;
 
-    public UseCaseCustumerCreate (CustomerRepository repository, UserCaseEntity userCaseEntity){
+    public UseCaseCustumerCreate (CustomerRepository repository, UserCaseEntity userCaseEntity, ViaCepClient viaCepClient){
         this.customerRepository = repository;
         this.userCaseEntity = userCaseEntity;
+        this.viaCepClient = viaCepClient;
     }
 
     @Transactional
     public void execute(CustomerRequest  customerRequest){
 
-        String url = "https://viacep.com.br/ws/"+customerRequest.getZipCode()+"/json/";
+        ViaCepDTO viaCepDTO = this.viaCepClient.zipCode(customerRequest.getZipCode());
+
 
         CustomerEntity entity = new CustomerEntity();
 
         try {
-            ViaCepDTO viaCepDTO = template.getForObject(url, ViaCepDTO.class);
             entity.setAddress(viaCepDTO.getLogradouro());
         } catch (Exception e) {
             throw new IllegalArgumentException("erro ao consulta CEP "+ customerRequest.getZipCode());
