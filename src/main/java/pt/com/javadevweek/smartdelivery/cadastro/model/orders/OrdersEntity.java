@@ -18,6 +18,7 @@ import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import pt.com.javadevweek.smartdelivery.cadastro.model.deliveryman.DeliveryManEntity;
 import pt.com.javadevweek.smartdelivery.cadastro.model.entityCostumer.CustomerEntity;
 import pt.com.javadevweek.smartdelivery.cadastro.model.entityProduct.Products;
 
@@ -34,14 +35,12 @@ public class OrdersEntity {
     @Enumerated(EnumType.STRING)
     private StatusOrders status = StatusOrders.CRIADO;
     
-
     @Column(name = "customer_id")
     private UUID customerId;
 
     @ManyToOne
     @JoinColumn(name = "customer_id", nullable = false, insertable = false, updatable = false)
     private CustomerEntity customer;
-
 
     @ManyToMany
     @JoinTable(
@@ -51,6 +50,11 @@ public class OrdersEntity {
     )
     private List<Products> producto;
 
-    
-    
+    @Column(name = "delivery_man_id", insertable = false, updatable = false)
+    private UUID deliveryManId; 
+
+    @ManyToOne
+   @JoinColumn(name = "delivery_man_id")
+    private DeliveryManEntity deliveryManEntity;
+ 
 }

@@ -10,7 +10,7 @@ import pt.com.javadevweek.smartdelivery.cadastro.useCase.useCaseUser.UserCaseEnt
 @Configuration
 public class AdminiInitilizarConfig {
     
-  //  @Bean
+    //@Bean
     public CommandLineRunner initAdmin(UserCaseEntity userCaseEntity){
         return args -> {
             userCaseEntity.execute("admin@smartdelivery.com", "admin123", Roles.ADMIN);

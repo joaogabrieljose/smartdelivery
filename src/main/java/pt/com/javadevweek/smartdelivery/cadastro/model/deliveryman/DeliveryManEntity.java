@@ -2,6 +2,7 @@ package pt.com.javadevweek.smartdelivery.cadastro.model.deliveryman;
 
 import java.util.UUID;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -25,5 +26,10 @@ public class DeliveryManEntity {
     private String name;
     private String document;
     private String phone;
-    
+
+   @Column(columnDefinition = "BOOLEAN DEFAULT true")
+    @Builder.Default
+    private boolean isAvailable = true;
+
+
 }
